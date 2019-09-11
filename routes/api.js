@@ -23,10 +23,15 @@ const getFeed = async url => {
   return await parser.parseURL(url);
 };
 
+router.get('/test', (req, res) => {
+  console.log('>>>>> API TEST');
+  res.sendStatus(200);
+});
+
 router.get('/getfeed', (req, res, next) => {
   const { url } = req.query;
 
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
   getFeed(url)
     .then(feed => {
