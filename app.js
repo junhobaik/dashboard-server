@@ -44,6 +44,7 @@ const server = new ApolloServer({
     }
   },
   context: ({ req }) => {
+    console.log(req);
     const user = req.user || null;
 
     return { userModel, feedModel, user };
