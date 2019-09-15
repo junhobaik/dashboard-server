@@ -22,7 +22,7 @@ require('dotenv').config();
 const app = express();
 
 app.use(morgan('dev'));
-// app.use(cors());
+app.use(cors());
 app.use(session);
 app.use(cookie());
 app.use(bodyParser.urlencoded({ extended: true }));
