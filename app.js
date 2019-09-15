@@ -33,6 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('*', cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use('/graphql', passport.authenticate('google', { scope: ['profile'] }));
 app.use('/api', api);
 app.use('/auth', auth);
 
