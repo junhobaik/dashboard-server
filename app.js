@@ -22,7 +22,7 @@ require('dotenv').config();
 const app = express();
 
 app.use(morgan('dev'));
-app.use(cors());
+// app.use(cors());
 app.use(session);
 app.use(cookie());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,6 +32,7 @@ passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('*', cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use('/api', api);
 app.use('/auth', auth);
 
@@ -44,8 +45,9 @@ const server = new ApolloServer({
     }
   },
   context: ({ req }) => {
-    if(req){
-      console.log(req.headers);
+    if (req) {
+      console.log('req.headers', req.headers);
+      console.log('req.user', req.user);
     }
     const user = req.user || null;
 
