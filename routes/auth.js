@@ -15,7 +15,7 @@ router.get(
   passport.authenticate('google', { failureRedirect: clientPath }),
   (req, res) => {
     const { id, displayName } = req.user;
-    const { picture } = req.user._json;
+    const { picture } = req.user._json.profile;
 
     userModel.findOne({ googleId: id }, (err, userData) => {
       if (err) return new Error(err);
