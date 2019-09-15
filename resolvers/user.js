@@ -58,8 +58,9 @@ export default {
     },
 
     user: async (parent, args, { userModel, user }) => {
-      console.log('user.id in user query: ', user.id);
+      console.log('user in user query: ', user);
       if (user) {
+        console.log('user.id in user query: ', user.id);
         return await userModel.findOne({ googleId: user.id });
       }
     }
