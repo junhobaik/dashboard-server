@@ -23,7 +23,6 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cors());
-// app.use(cors({ credentials: true }));
 app.use(session);
 app.use(cookie());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,7 +32,6 @@ passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use('/graphql', passport.authenticate('google', { scope: ['profile'] }));
 app.use('/api', api);
 app.use('/auth', auth);
 
@@ -47,7 +45,6 @@ const server = new ApolloServer({
   },
   context: ({ req }) => {
     if (req) {
-      console.log('req.headers', req.headers);
       console.log('req.user', req.user);
     }
     const user = req.user || null;
