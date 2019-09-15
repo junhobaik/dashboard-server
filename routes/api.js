@@ -101,6 +101,6 @@ const updateFeed = () => {
 // updateFeed();
 const interval = setInterval(() => {
   updateFeed();
-}, 10 * 60 * 1000);
+}, 30 * 60 * 1000);
 
 export default router;
