@@ -14,9 +14,8 @@ router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: clientPath }),
   (req, res) => {
-    console.log(req);
-    const { id, displayName } = req.user;
-    const { picture } = req.user._json.profile;
+    const { id, displayName } = req.user.profile;
+    const { picture } = req.user.profile._json;
 
     userModel.findOne({ googleId: id }, (err, userData) => {
       if (err) return new Error(err);
