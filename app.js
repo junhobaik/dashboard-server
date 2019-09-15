@@ -32,7 +32,7 @@ passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors({ credentials: true }));
+// app.use(cors({ credentials: true }));
 app.use('/graphql', passport.authenticate('google', { scope: ['profile'] }));
 app.use('/api', api);
 app.use('/auth', auth);
