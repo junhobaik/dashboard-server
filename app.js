@@ -21,11 +21,6 @@ require('dotenv').config();
 
 const app = express();
 
-app.all('/*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
 app.use(morgan('dev'));
 app.use(cors());
 // app.use(cors({ credentials: true }));
@@ -38,7 +33,7 @@ passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/graphql', passport.authenticate('google', { scope: ['profile'] }));
+// app.use('/graphql', passport.authenticate('google', { scope: ['profile'] }));
 app.use('/api', api);
 app.use('/auth', auth);
 
