@@ -17,8 +17,6 @@ import session from './lib/session';
 import api from './routes/api';
 import auth from './routes/auth';
 
-import findOrCreateUser from './controller/userController';
-
 require('dotenv').config();
 
 const app = express();
