@@ -17,6 +17,8 @@ import session from './lib/session';
 import api from './routes/api';
 import auth from './routes/auth';
 
+import findOrCreateUser from './controller/userController';
+
 require('dotenv').config();
 
 const app = express();
@@ -45,11 +47,22 @@ const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   playground: {
-    settings: {
-      'request.credentials': 'include'
-    }
+    settings: { 'request.credentials': 'include' }
   },
-  context: ({ req }) => {
+  context: async ({ req }) => {
+    let authToken = null;
+    let currentUser = null;
+
+    try {
+      authToken = req.headers.authorization;
+      console.log('authToken', authToken);
+      if (authToken) {
+        currentUser = await findOrCreateUser(authToken);
+      }
+    } catch (err) {
+      console.error(`Unable to authenticate user with token ${authToken} `);
+    }
+
     if (req) {
       console.log('req', Object.keys(req));
       console.log('req.user', req.user);
