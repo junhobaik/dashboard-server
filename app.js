@@ -45,7 +45,7 @@ const server = new ApolloServer({
   },
   context: ({ req }) => {
     if (req) {
-      console.log('req', req);
+      console.log('req', Object.keys(req));
       console.log('req.user', req.user);
     }
     const user = req.user || null;
