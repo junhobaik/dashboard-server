@@ -50,19 +50,6 @@ const server = new ApolloServer({
     settings: { 'request.credentials': 'include' }
   },
   context: async ({ req }) => {
-    let authToken = null;
-    let currentUser = null;
-
-    try {
-      authToken = req.headers.authorization;
-      console.log('authToken', authToken);
-      if (authToken) {
-        currentUser = await findOrCreateUser(authToken);
-      }
-    } catch (err) {
-      console.error(`Unable to authenticate user with token ${authToken} `);
-    }
-
     if (req) {
       console.log('req', Object.keys(req));
       console.log('req.headers', req.headers);
